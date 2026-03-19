@@ -17,7 +17,7 @@ const toppers: Topper[] = Array(10).fill({
 
 export default function OurToppers() {
     return (
-        <section className="relative w-full py-20 overflow-hidden bg-[#f8f9fa] flex flex-col items-center">
+        <section className="relative w-full py-16 overflow-hidden bg-[#f8f9fa] flex flex-col items-center">
 
             {/* Background with wave image */}
             <div className="absolute inset-0 z-0">
@@ -30,72 +30,75 @@ export default function OurToppers() {
                 />
             </div>
 
-            <div className="relative z-10 w-full flex flex-col items-center text-center">
+            <div className="relative z-10 w-full flex flex-col items-center">
 
                 {/* Headings */}
-                <h2 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
-                    <span className="text-[#EF5A68]">OUR </span>
-                    <span className="text-[#4BA6D7]">TOPPERS</span>
-                </h2>
-
-                <p className="text-gray-800 text-lg md:text-xl font-medium mb-12">
-                    Celebrating Our Toppers Success With You
-                </p>
+                <div className="text-center px-4 mb-10">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-2 tracking-tight">
+                        <span className="text-[#EF5A68]">OUR </span>
+                        <span className="text-[#4BA6D7]">TOPPERS</span>
+                    </h2>
+                    <p className="text-gray-700 text-base md:text-lg font-medium">
+                        Celebrating Our Toppers Success With You
+                    </p>
+                </div>
 
                 {/* Carousel Container */}
-                <div className="w-full relative py-6">
-                    <div className="flex overflow-hidden relative w-full" style={{ maskImage: 'linear-gradient(to right, transparent, black 5%, black 95%, transparent)' }}>
-
-                        {/* Sliding Track */}
-                        <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] gap-6 px-3">
+                <div className="w-full relative">
+                    <div className="flex overflow-hidden relative w-full [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+                        
+                        <div className="flex w-max animate-infinite-scroll hover:[animation-play-state:paused] gap-6 py-4 px-4 items-stretch">
                             {[...toppers, ...toppers].map((topper, idx) => (
                                 <motion.div
                                     key={idx}
-                                    initial={{ opacity: 0, y: 50 }}
+                                    initial={{ opacity: 0, y: 20 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-50px" }}
-                                    transition={{ duration: 0.5, delay: (idx % 10) * 0.1 }}
-                                    className="w-[240px] shrink-0 bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.05)] flex flex-col items-center justify-center py-8 px-5 m-2 transition-transform hover:-translate-y-2 border border-gray-100"
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: (idx % 10) * 0.05 }}
+                                    /* Reduced card width from 260px to 210px and reduced padding */
+                                    className="w-[210px] shrink-0 bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] flex flex-col items-center text-center py-8 px-4 border border-gray-100 transition-all duration-300 hover:-translate-y-1"
                                 >
+                                    {/* --- Image Composition - Scaled Down --- */}
+                                    <div className="relative w-36 h-36 mb-4 flex items-center justify-center">
+                                        
+                                        {/* 1. The Wreath */}
+                                        <div className="absolute inset-0 z-10">
+                                            <Image
+                                                src="/personbackground.png"
+                                                alt="Golden Wreath"
+                                                fill
+                                                className="object-contain pointer-events-none"
+                                            />
+                                        </div>
 
-                                    {/* Image Composition */}
-                                    <div className="relative w-36 h-36 mb-5 flex items-center justify-center">
-                                        {/* Golden Wreath - Back Layer */}
-                                        <Image
-                                            src="/personbackground.png"
-                                            alt="Golden Wreath"
-                                            fill
-                                            className="object-contain z-10 pointer-events-none drop-shadow-lg"
-                                        />
-
-                                        {/* Person Image - Front Layer */}
-                                        <div className="absolute w-[68%] h-[68%] rounded-full overflow-hidden bg-transparent z-20">
+                                        {/* 2. The Person - Perfectly fit for a smaller card */}
+                                        <div className="absolute w-[62%] h-[62%] bottom-[24%] z-20 overflow-hidden rounded-full shadow-inner bg-gray-50">
                                             <Image
                                                 src="/person.png"
                                                 alt={topper.name}
                                                 fill
-                                                className="object-cover"
+                                                className="object-cover object-top scale-110" 
                                             />
                                         </div>
                                     </div>
 
-                                    {/* Text Info */}
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2 text-center">{topper.name}</h3>
+                                    {/* Text Info - Adjusted font sizes for the smaller card */}
+                                    <h3 className="text-lg font-bold text-gray-900 mb-1 leading-tight">
+                                        {topper.name}
+                                    </h3>
 
-                                    <div className="inline-flex items-center justify-center bg-[#de8200] text-white text-[13px] font-bold px-6 py-1 rounded-full mb-3 shadow-sm">
+                                    <div className="inline-block bg-[#de8200] text-white text-[10px] font-bold px-4 py-1 rounded-full mb-3 shadow-sm uppercase tracking-wide">
                                         {topper.rank}
                                     </div>
 
-                                    <p className="text-gray-600 text-[13px] font-medium text-center">
+                                    <p className="text-gray-500 text-xs font-semibold leading-snug">
                                         {topper.course}
                                     </p>
-
                                 </motion.div>
                             ))}
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );

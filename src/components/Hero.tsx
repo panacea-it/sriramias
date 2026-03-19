@@ -98,10 +98,7 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Floating Enquiry Form Button */}
-      <button className="fixed bottom-6 right-6 z-50 bg-[#005c8a] hover:bg-[#00486d] text-white rounded-full px-6 py-2.5 font-medium shadow-[0_4px_14px_0_rgba(0,118,255,0.39)] transition-transform hover:-translate-y-0.5 border border-[#005c8a]">
-        Enquiry Form
-      </button>
+     
     </div>
   );
 }
